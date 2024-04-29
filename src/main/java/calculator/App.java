@@ -51,6 +51,16 @@ public class App {
             }
             System.out.println("결과: " + result);
 
+            // 연산 결과가 10개를 초과할 경우 가장 먼저 저장된 결과 삭제 후 새로운 연산 결과 저장
+            // Hint : 결과 값을 한 칸 씩 앞으로 이동
+            if (resultArrayIndex >= 10) {
+                for (int i = 0; i < resultArrayIndex - 1; i++) {
+                    resultArray[i] = resultArray[i + 1];
+                }
+                System.out.print(resultArrayIndex+" ");
+                resultArrayIndex--;
+            }
+
             // 연산 결과 배열에 저장 후 index 증가
             resultArray[resultArrayIndex++] = result;
 
