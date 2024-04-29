@@ -1,15 +1,14 @@
 package calculator;
 
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) {
-        // 연산의 결과를 저장할 배열 생성
-        int[] resultArray = new int[10];
-        // 연산의 결과가 저장된 배열의 마지막 index를 저장하는 변수 선언
-        int resultArrayIndex = 0;
+        // 연산의 결과를 저장할 리스트 생성
+        LinkedList<Integer> list = new LinkedList<>();
 
         Scanner sc = new Scanner(System.in);
 
@@ -51,23 +50,19 @@ public class App {
             }
             System.out.println("결과: " + result);
 
-            // 연산 결과가 10개를 초과할 경우 가장 먼저 저장된 결과 삭제 후 새로운 연산 결과 저장
-            // Hint : 결과 값을 한 칸 씩 앞으로 이동
-            if (resultArrayIndex >= 10) {
-                for (int i = 0; i < resultArrayIndex - 1; i++) {
-                    resultArray[i] = resultArray[i + 1];
-                }
-                System.out.print(resultArrayIndex+" ");
-                resultArrayIndex--;
-            }
+            // 연산의 결과를 리스트에 저장
+            list.addLast(result);
 
-            // 연산 결과 배열에 저장 후 index 증가
-            resultArray[resultArrayIndex++] = result;
+            // "remove" 입력 시 가장 먼저 저장된 결과 삭제
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            String remove = sc.nextLine();
+            if (Objects.equals(remove, "remove"))
+                list.removeFirst();
 
             // exit을 입력 받으면 반복 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
-            String answer = sc.nextLine();
-            if (Objects.equals(answer, "exit"))
+            String exit = sc.nextLine();
+            if (Objects.equals(exit, "exit"))
                 break;
         }
     }
