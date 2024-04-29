@@ -59,6 +59,15 @@ public class App {
             if (Objects.equals(remove, "remove"))
                 list.removeFirst();
 
+            // "inquiry" 입력 시 저장된 연산 결과 전부 출력
+            System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+            String inquiry = sc.nextLine();
+            if (Objects.equals(inquiry, "inquiry")) {
+                for (int savedResult : list) {
+                    System.out.println(savedResult);
+                }
+            }
+
             // exit을 입력 받으면 반복 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String exit = sc.nextLine();
