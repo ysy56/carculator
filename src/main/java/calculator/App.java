@@ -6,8 +6,12 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        // 연산의 결과를 저장할 배열 생성
+        int[] resultArray = new int[10];
+        // 연산의 결과가 저장된 배열의 마지막 index를 저장하는 변수 선언
+        int resultArrayIndex = 0;
 
+        Scanner sc = new Scanner(System.in);
 
         while (true) { // 반복문 사용 해서 연산을 반복
             System.out.print("첫 번째 숫자를 입력하세요: ");
@@ -46,6 +50,9 @@ public class App {
                     System.out.println("사칙연산 기호는 +, -, *, / 중에서 입력할 수 있습니다.");
             }
             System.out.println("결과: " + result);
+
+            // 연산 결과 배열에 저장 후 index 증가
+            resultArray[resultArrayIndex++] = result;
 
             // exit을 입력 받으면 반복 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
