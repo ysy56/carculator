@@ -1,6 +1,5 @@
 package calculator;
 
-import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -8,7 +7,8 @@ public class App {
 
     public static void main(String[] args) {
         // Calculator 인스턴스 생성
-        Calculator cal = new Calculator();
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
+        CircleCalculator circleCalculator = new CircleCalculator();
 
         Scanner sc = new Scanner(System.in);
 
@@ -22,15 +22,16 @@ public class App {
                 int circleNum = sc.nextInt();
                 sc.nextLine();
 
-                double circleArea = cal.calculateCircleArea(circleNum);
+                circleCalculator.setRadius(circleNum);
+                double circleArea = circleCalculator.calculate();
                 System.out.println("결과 : " + circleArea);
 
                 // 원의 넒이 저장
-                cal.setCircleAreaList(circleArea);
+                circleCalculator.setList(circleArea);
 
                 // 저장된 원의 넓이 값들 바로 전체 조회
                 System.out.println("저장된 원의 넓이들");
-                cal.inquiryCircleArea();
+                circleCalculator.inquiryResults();
 
             } else if (Objects.equals(answer, "calculate")) {
                 System.out.print("첫 번째 숫자를 입력하세요: ");
@@ -48,26 +49,30 @@ public class App {
                 char operator = sc.nextLine().charAt(0);
 
                 // 연산을 수행 및 결과를 저장하는 Calculator::calculate
-                int result = 0;
+                double result = 0;
+                arithmeticCalculator.setNumAndOperator(firstNum, secondNum, operator);
                 try {
-                    result = cal.calculate(firstNum, secondNum, operator);
+                    result = arithmeticCalculator.calculate();
                 } catch(Exception e) {
                     System.out.println(e.getMessage());
                 }
 
                 System.out.println("결과: " + result);
 
+                // 연산의 결과를 리스트에 저장
+                arithmeticCalculator.setList(result);
+
                 // "remove" 입력 시 가장 먼저 저장된 결과 삭제
                 System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
                 String remove = sc.nextLine();
                 if (Objects.equals(remove, "remove"))
-                    cal.removeResult(); // Calculator의 리스트 간접 접근을 통해 첫 번째 값 삭제
+                    arithmeticCalculator.removeResult(); // Calculator의 리스트 간접 접근을 통해 첫 번째 값 삭제
 
                 // "inquiry" 입력 시 저장된 연산 결과 전부 출력
                 System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
                 String inquiry = sc.nextLine();
                 if (Objects.equals(inquiry, "inquiry"))
-                    cal.inquiryResults(); // Calculator의 리스트 간접 접근을 통해 리스트 값 전체 출력
+                    arithmeticCalculator.inquiryResults(); // Calculator의 리스트 간접 접근을 통해 리스트 값 전체 출력
 
             } else {
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
