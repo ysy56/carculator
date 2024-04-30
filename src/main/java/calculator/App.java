@@ -7,7 +7,9 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-        // 연산의 결과를 저장할 리스트 생성
+        // Calculator 인스턴스 생성
+        Calculator cal = new Calculator();
+        // 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성
         LinkedList<Integer> list = new LinkedList<>();
 
         Scanner sc = new Scanner(System.in);
@@ -27,27 +29,14 @@ public class App {
             // 사칙연산 기호를 적합한 타입으로 선언한 변수에 저장합니다.
             char operator = sc.nextLine().charAt(0);
 
+            // 연산을 수행하는 Calculator
             int result = 0;
-            /* switch를 이용하여 사칙연산 기호에 따른 계산 실행*/
-            switch (operator) {
-                case '+':
-                    result = firstNum + secondNum;
-                    break;
-                case '-':
-                    result = firstNum - secondNum;
-                    break;
-                case '*':
-                    result = firstNum * secondNum;
-                    break;
-                case '/':
-                    if (secondNum == 0) // 분모에 0이 입력될 경우 예외문구 출력
-                        System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-                    else
-                        result = firstNum / secondNum;
-                    break;
-                default:
-                    System.out.println("사칙연산 기호는 +, -, *, / 중에서 입력할 수 있습니다.");
+            try {
+                result = cal.calculate(firstNum, secondNum, operator);
+            } catch(Exception e) {
+                System.out.println(e.getMessage());
             }
+
             System.out.println("결과: " + result);
 
             // 연산의 결과를 리스트에 저장

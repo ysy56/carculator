@@ -4,9 +4,13 @@ import java.util.LinkedList;
 
 public class Calculator {
     // 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성
+    int firstNumber;
+    int secondNumber;
+    char operator;
+
     LinkedList<Integer> list = new LinkedList<>();
 
-    public int Calculator(int firstNumber, int secondNumber, char operator) throws Exception {
+    public int calculate(int firstNumber, int secondNumber, char operator) throws Exception {
         int result = 0;
         /* switch를 이용하여 사칙연산 기호에 따른 계산 실행*/
         switch (operator) {
