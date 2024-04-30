@@ -5,7 +5,11 @@ import java.util.LinkedList;
 public class Calculator {
     // 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성
     // 연산 결과를 저장하는 컬렉션 타입 필드를 외부에서 직접 접근 하지 못하도록 수정
-    private LinkedList<Integer> list = new LinkedList<>();
+    private LinkedList<Integer> list;
+
+    Calculator() {
+        this.list = new LinkedList<>();
+    }
 
     public int calculate(int firstNumber, int secondNumber, char operator) throws Exception {
         int result = 0;
