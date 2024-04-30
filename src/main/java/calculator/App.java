@@ -41,7 +41,7 @@ public class App {
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             String remove = sc.nextLine();
             if (Objects.equals(remove, "remove"))
-                cal.setRemoveList(); // Calculator의 리스트 간접 접근을 통해 첫 번째 값 삭제
+                cal.removeResult(); // Calculator의 리스트 간접 접근을 통해 첫 번째 값 삭제
 
             // "inquiry" 입력 시 저장된 연산 결과 전부 출력
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");

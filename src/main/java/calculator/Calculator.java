@@ -39,7 +39,7 @@ public class Calculator {
     }
 
     // 리스트 간접 접근을 통해 내부의 리스트 첫 번째 값 삭제
-    public void setRemoveList() {
+    public void removeResult() {
         this.list.removeFirst();
     }
 }
