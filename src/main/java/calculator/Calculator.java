@@ -4,11 +4,8 @@ import java.util.LinkedList;
 
 public class Calculator {
     // 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성
-    int firstNumber;
-    int secondNumber;
-    char operator;
-
-    LinkedList<Integer> list = new LinkedList<>();
+    // 연산 결과를 저장하는 컬렉션 타입 필드를 외부에서 직접 접근 하지 못하도록 수정
+    private LinkedList<Integer> list = new LinkedList<>();
 
     public int calculate(int firstNumber, int secondNumber, char operator) throws Exception {
         int result = 0;
@@ -26,8 +23,23 @@ public class Calculator {
             default -> throw new Exception("+, -, *, /가 아닌 사칙연산은 입력할 수 없습니다.");
         }
         // 연산의 결과를 리스트에 저장
-        list.addLast(result);
+        setList(result);
 
         return result;
+    }
+
+    // 리스트 간접 접근을 통해 외부(App::main)로 내보내기
+    public LinkedList<Integer> getList() {
+        return list;
+    }
+
+    // 리스트 간접 접근을 통해 외부(Calculator::calculate)에서 받아온 값 내부의 리스트 마지막에 값 추가
+    public void setList(int result) {
+        this.list.addLast(result);
+    }
+
+    // 리스트 간접 접근을 통해 내부의 리스트 첫 번째 값 삭제
+    public void setRemoveList() {
+        this.list.removeFirst();
     }
 }
