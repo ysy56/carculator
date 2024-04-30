@@ -3,12 +3,20 @@ package calculator;
 import java.util.LinkedList;
 
 public class Calculator {
-    // 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성
-    // 연산 결과를 저장하는 컬렉션 타입 필드를 외부에서 직접 접근 하지 못하도록 수정
-    private LinkedList<Integer> list;
+    /* final & static 활용 이유
+    원주율은 변하지 않는 수(상수)이기 때문에
+    자바에서 상수를 뜻하는 final static을 사용
+    */
+    final static double pi = 3.141592;
 
+    // 연산 결과 & 원의 넓이를 저장하는 컬렉션 타입 필드가 생성자를 통해 초기화 되도록 변경
+    private LinkedList<Integer> calculateList;
+    private LinkedList<Double> circleAreaList;
+
+    // 생성자 구현
     Calculator() {
-        this.list = new LinkedList<>();
+        this.calculateList = new LinkedList<>();
+        this.circleAreaList = new LinkedList<>();
     }
 
     public int calculate(int firstNumber, int secondNumber, char operator) throws Exception {
@@ -34,23 +42,45 @@ public class Calculator {
 
     // 리스트 간접 접근을 통해 외부로 내보내기
     public LinkedList<Integer> getList() {
-        return this.list;
+        return this.calculateList;
     }
 
     // 리스트 간접 접근을 통해 외부(Calculator::calculate)에서 받아온 값 내부의 리스트 마지막에 값 추가
     public void setList(int result) {
-        this.list.addLast(result);
+        this.calculateList.addLast(result);
     }
 
     // 리스트 간접 접근을 통해 내부의 리스트 첫 번째 값 삭제
     public void removeResult() {
-        this.list.removeFirst();
+        this.calculateList.removeFirst();
     }
 
     // 리스트 간접 접근을 통해 내부의 리스트 값 전체 출력
     public void inquiryResults() {
-        for (int savedResult : this.list) { // 리스트의 전체 값 출력
+        for (int savedResult : this.calculateList) { // 리스트의 전체 값 출력
             System.out.println(savedResult);
+        }
+    }
+
+    // 원의 넓이를 계산
+    public double calculateCircleArea(int radius) {
+        return radius * radius * pi;
+    }
+
+    // 원의 넓이를 저장한 리스트 간접 접근을 통해 외부로 내보내기
+    public LinkedList<Double> getCircleAreaList() {
+        return this.circleAreaList;
+    }
+
+    // 리스트 간접 접근을 통해 외부(App::main)에서 받아온 값 내부 원의 넓이를 저장한 리스트 마지막에 값 추가
+    public void setCircleAreaList(double circleArea) {
+        this.circleAreaList.addLast(circleArea);
+    }
+
+    // 리스트 간접 접근을 통해 내부의 리스트 값 전체 출력
+    public void inquiryCircleArea() {
+        for (double savedCircleArea : this.circleAreaList) { // 리스트의 전체 값 출력
+            System.out.println(savedCircleArea);
         }
     }
 }
