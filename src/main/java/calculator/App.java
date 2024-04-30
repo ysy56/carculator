@@ -46,12 +46,8 @@ public class App {
             // "inquiry" 입력 시 저장된 연산 결과 전부 출력
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             String inquiry = sc.nextLine();
-            if (Objects.equals(inquiry, "inquiry")) {
-                /* Calculator의 리스트 간접 접근을 통해 값 가져오기 */
-                for (int savedResult : cal.getList()) {
-                    System.out.println(savedResult);
-                }
-            }
+            if (Objects.equals(inquiry, "inquiry"))
+                cal.inquiryResults(); // Calculator의 리스트 간접 접근을 통해 리스트 값 전체 출력
 
             // exit을 입력 받으면 반복 종료
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");

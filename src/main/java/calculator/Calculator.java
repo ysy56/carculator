@@ -28,9 +28,9 @@ public class Calculator {
         return result;
     }
 
-    // 리스트 간접 접근을 통해 외부(App::main)로 내보내기
+    // 리스트 간접 접근을 통해 외부로 내보내기
     public LinkedList<Integer> getList() {
-        return list;
+        return this.list;
     }
 
     // 리스트 간접 접근을 통해 외부(Calculator::calculate)에서 받아온 값 내부의 리스트 마지막에 값 추가
@@ -41,5 +41,12 @@ public class Calculator {
     // 리스트 간접 접근을 통해 내부의 리스트 첫 번째 값 삭제
     public void removeResult() {
         this.list.removeFirst();
+    }
+
+    // 리스트 간접 접근을 통해 내부의 리스트 값 전체 출력
+    public void inquiryResults() {
+        for (int savedResult : this.list) { // 리스트의 전체 값 출력
+            System.out.println(savedResult);
+        }
     }
 }
