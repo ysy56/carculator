@@ -30,4 +30,9 @@ public class ArithmeticCalculator extends Calculator {
         this.secondNum = secondNum;
         this.operator = operator;
     }
+
+    // 리스트 간접 접근을 통해 내부의 리스트 첫 번째 값 삭제
+    public void removeResult() {
+        super.getList().removeFirst();
+    }
 }
