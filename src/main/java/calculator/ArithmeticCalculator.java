@@ -33,7 +33,7 @@ public class ArithmeticCalculator extends Calculator{
     public void setNumAndOperator(int firstNum, int secondNum, char operator) {
         this.firstNum = firstNum;
         this.secondNum = secondNum;
-        this.operatorType = OperatorType.fromString(Character.toString(operator));
+        this.operatorType = OperatorType.fromOperator(operator);
     }
 
     // 리스트 간접 접근을 통해 내부의 리스트 첫 번째 값 삭제
