@@ -47,4 +47,11 @@ public class ArithmeticCalculator<T extends Number> extends Calculator{
     public void removeResult() {
         super.getList().removeFirst();
     }
+
+    // 저장된 결과 중 입력값보다 큰 결과값들을 출력/조회하는 메서드
+    public void printResultGreaterThan(double num) {
+        super.getList().stream()
+                .filter(result -> result.doubleValue() > num)
+                .forEach(result -> System.out.println("연산 결과 : " + result));
+    }
 }

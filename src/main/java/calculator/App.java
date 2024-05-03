@@ -74,6 +74,13 @@ public class App {
                 if (Objects.equals(inquiry, "inquiry"))
                     arithmeticCalculator.inquiryResults(); // Calculator의 리스트 간접 접근을 통해 리스트 값 전체 출력
 
+                System.out.println("저장된 연산결과 중 입력한 값보다 큰 값들을 조회하시겠습니까? (lambda 입력시 조회)");
+                if (Objects.equals(sc.nextLine(), "lambda")){
+                    System.out.print("기준 값을 입력하세요 : ");
+                    double num = sc.nextDouble();
+                    sc.nextLine();
+                    arithmeticCalculator.printResultGreaterThan(num);
+                }
             } else {
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
                 continue;
