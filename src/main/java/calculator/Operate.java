@@ -1,5 +1,5 @@
 package calculator;
 
-interface Operate {
-    int operate(int firstNum, int secondNum);
+interface Operate <T extends Number>{
+    T operate(T firstNum, T secondNum);
 }

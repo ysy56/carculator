@@ -7,7 +7,7 @@ public class App {
 
     public static void main(String[] args) {
         // Calculator 인스턴스 생성
-        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator(Double.class);
         CircleCalculator circleCalculator = new CircleCalculator();
 
         Scanner sc = new Scanner(System.in);
@@ -36,12 +36,12 @@ public class App {
             } else if (Objects.equals(answer, "calculate")) {
                 System.out.print("첫 번째 숫자를 입력하세요: ");
                 // Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다.
-                int firstNum = sc.nextInt();
+                double firstNum = sc.nextDouble();
                 sc.nextLine();
 
                 System.out.print("두 번째 숫자를 입력하세요: ");
                 // Scanner를 사용하여 양의 정수를 입력받고 적합한 타입의 변수에 저장합니다.
-                int secondNum = sc.nextInt();
+                double secondNum = sc.nextDouble();
                 sc.nextLine();
 
                 System.out.print("사칙연산 기호를 입력하세요: ");
@@ -52,7 +52,7 @@ public class App {
                 double result = 0;
                 arithmeticCalculator.setNumAndOperator(firstNum, secondNum, operator);
                 try {
-                    result = arithmeticCalculator.calculate();
+                    result = (double) arithmeticCalculator.calculate();
                 } catch(Exception e) {
                     System.out.println(e.getMessage());
                 }
